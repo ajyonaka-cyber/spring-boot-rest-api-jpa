@@ -35,11 +35,16 @@ public class ProductService {
         existingProduct.setName(product.getName());
         existingProduct.setPrice(product.getPrice());
         existingProduct.setQuantity(product.getQuantity());
+        existingProduct.setCategory(product.getCategory());
 
         return productRepository.save(existingProduct);
     }
 
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
+    }
+
+    public List<Product> searchProductsByName(String name) {
+        return productRepository.searchProductsByName(name);
     }
 }

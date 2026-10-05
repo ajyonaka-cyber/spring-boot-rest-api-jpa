@@ -47,4 +47,9 @@ public class ProductController {
         productService.deleteProduct(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/search")
+    public List<Product> searchProducts(@RequestParam String name) {
+        return productService.searchProductsByName(name);
+    }
 }

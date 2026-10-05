@@ -4,10 +4,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
+@Table(name = "products")
 public class Product {
 
     @Id
@@ -22,6 +25,10 @@ public class Product {
 
     @Min(value = 0, message = "Quantity cannot be negative")
     private int quantity;
+
+    @JsonBackReference
+    @ManyToOne
+    private Category category;
 
     public Product() {
     }
@@ -62,5 +69,13 @@ public class Product {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
